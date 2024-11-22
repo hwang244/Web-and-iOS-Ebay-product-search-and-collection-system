@@ -1,0 +1,177 @@
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col text-center">
+            {{title}}
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-between align-items-center">
+            <div class="col-auto">
+                <button class="btn btn-outline-primary me-2 back-list d-flex" (click)="triggerBackToResults()">
+                    <span class="material-symbols-outlined">
+                        navigate_before
+                    </span>
+                    List
+                </button>
+            </div>
+            <!-- Social Media and Wishlist Buttons -->
+            <div class="col-auto">
+                <button class="btn btn-social-icon btn-facebook me-2 fb-box">
+                    <i class="fab fa-facebook-f fb-button"></i>
+                </button>
+                <button class="btn btn-outline-secondary">
+                    <span class="material-symbols-outlined align-middle">add_shopping_cart</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg nav-tabs">
+        <div class="container-fluid">
+            <ul class="nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="isActive('product')" href="#"
+                        (click)="selectTab('product'); $event.preventDefault()">Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="isActive('photos')" href="#"
+                        (click)="selectTab('photos'); $event.preventDefault()">Photos</a>
+                </li>
+                <!-- Add other tabs similarly -->
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="isActive('shipping')" href="#"
+                        (click)="selectTab('shipping'); $event.preventDefault()">Shipping</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="isActive('seller')" href="#"
+                        (click)="selectTab('seller'); $event.preventDefault()">Seller</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="isActive('similarProducts')" href="#"
+                        (click)="selectTab('similarProducts'); $event.preventDefault()">Similar Products</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <!-- Product Detail Table -->
+    <div *ngIf="selectedTab === 'product'">
+        <div class="table-responsive">
+            <table class="table table-dark table-striped ">
+                <tbody>
+                    <tr *ngFor="let detail of detailsList">
+                        <th *ngIf="detail.key=='Product Images'" class="col-4" scope="row">{{ detail.key}}</th>
+                        <td *ngIf="detail.key=='Product Images'" class="col-8">
+                            <button type="button" class="title-button"  (click)="productImagesModal.openModal()">
+                                View Product Images Here
+                            </button>
+                        </td>
+                        <th *ngIf="detail.key!='Product Images'" class="col-4" scope="row">{{ detail.key}}</th>
+                        <td *ngIf="detail.key!='Product Images'" class="col-8">{{ detail.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Modal -->
+        <app-product-images-modal #productImagesModal [images]="images"></app-product-images-modal>
+    </div>
+
+    <!-- Placeholder for other content sections -->
+    <div *ngIf="selectedTab === 'photos'">
+        <!-- Content for Photos -->
+    </div>
+
+    <div *ngIf="selectedTab === 'shipping'">
+        <div class="table-responsive">
+            <table class="table table-dark table-striped ">
+                <tbody>
+                    <tr *ngFor="let item of shippingList; let i = index">
+                        <th class="col-7" scope="row">{{ item.key}}</th>
+                        <td class="col-5">
+                            <ng-container *ngIf="item.key === 'Expedited Shipping' || item.key === 'One Day Shipping' || item.key === 'Return Accepted'; else defaultView">
+                                <span *ngIf="item.value" class="text-success">&#10004;</span> <!-- Green check mark -->
+                                <span *ngIf="!item.value" class="text-danger">&#10005;</span> <!-- Red cross mark -->
+                            </ng-container>
+                            <ng-template #defaultView>{{ item.value }}</ng-template>    
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="selectedTab === 'seller'">
+        <div class="table-responsive">
+            <table class="table table-dark table-striped ">
+                <thead>
+                    <tr>
+                        <th class="col-12 text-center" scope="col" colspan="2">{{transformStoreName(sellerInfo[4].value)}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="sellerInfo[0].value!='N|A'">
+                        <th class="col-6" scope="row"> {{sellerInfo[0].key}}</th>
+                        <td class="col-6">{{sellerInfo[0].value}} </td>
+                    </tr>
+                    <tr *ngIf="sellerInfo[1].value!='N|A'">
+                        <th class="col-6" scope="row"> {{sellerInfo[1].key}}</th>
+                        <td class="col-6">
+                            <div class="progress-circle">
+                                <svg viewBox="0 0 36 36" class="circular-chart">
+                                    <path class="circle-bg"
+                                        d="M18 18 m -15, 0 a 15,15 0 1,0 30,0 a 15,15 0 1,0 -30,0"
+                                    />
+                                    <path class="circle"
+                                        [attr.stroke-dasharray]="sellerInfo[1].value + ', 100'"
+                                        d="M18 18 m -15, 0 a 15,15 0 1,0 30,0 a 15,15 0 1,0 -30,0"
+                                    />
+                                    <text x="18" y="18.6" class="percentage">{{sellerInfo[1].value}}</text>
+                                </svg>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr *ngIf="sellerInfo[2].value!=='N|A'">
+                        <th class="col-6" scope="row"> {{sellerInfo[2].key}}</th>
+                        <td class="col-6">
+                            <span class="material-symbols-outlined"
+                                  [style.color]="sellerInfo[2].value | lowercase">
+                                stars
+                            </span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="sellerInfo[3].value!=='N|A'">
+                        <th class="col-6" scope="row"> {{sellerInfo[3].key}}</th>
+                        <td class="col-6">
+                            <span *ngIf="sellerInfo[3].value" class="text-success">&#10004;</span> <!-- Green check mark -->
+                            <span *ngIf="!sellerInfo[3].value" class="text-danger">&#10005;</span> <!-- Red cross mark -->
+                        </td>
+                    </tr>
+                    <tr *ngIf="sellerInfo[4].value!=='N|A'">
+                        <th class="col-6" scope="row"> {{sellerInfo[4].key}}</th>
+                        <td class="col-6"> {{sellerInfo[4].value}} </td>
+                    </tr>
+                    <tr *ngIf="sellerInfo[5].value!=='N|A'">
+                        <th class="col-6" scope="row"> {{sellerInfo[5].key}}</th>
+                        <td class="col-6">
+                            <a class="title-button" 
+                                [href]="sellerInfo[5].value"
+                                target="_blank">
+                                Store
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="selectedTab === 'similarProducts'">
+        <!-- Content for Photos -->
+    </div>
+</div>

@@ -1,0 +1,65 @@
+.results-container{
+    justify-content: center;
+    align-items: center;
+    width: 1200px;
+}
+.result-item{
+    justify-content: center;
+}
+.title-button{
+    background: none;
+    color: deepskyblue;
+    padding: 0;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.detail-list{
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247, 248, 250);
+    border: 0;
+    color: black;
+}
+.detail-list:hover{
+    background-color: rgb(225, 226, 232);
+    color: black;
+}
+/* .table-dark.table-striped.table-hover tbody tr.selected:hover {
+    background-color: yellow !important; 
+} */
+
+.table-dark.table-striped.table-hover tbody tr.selected td{
+    background-color: rgba(53, 53, 53, 0.75) !important /* This is your selection color */
+}
+/* .table-dark.table-striped.table-hover tbody tr.selected td:hover{
+    background-color: yellow !important
+} */
+.addcart-button{
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(248, 248, 250);
+    color: black;
+}
+.removecart-button{
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(248, 248, 250);
+    color: rgb(170, 136, 39);
+}
+.no-records {
+    display: flex;
+    align-items: center;
+    border: 0; 
+    background-color: #fffbdb; /* Or any light color you prefer */
+    color: #8a630f; /* Dark text color for contrast */
+    min-height: 50px; /* Ensures a minimum height */
+    margin-top: 20px; /* Space above the box */
+    padding: 10px 5px; /* Top and bottom padding */
+    font-size: 1.2em; /* Larger text size */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+    font-family: 'Arial', sans-serif; /* Font family similar to the image */
+    width: 100%; /* Ensures the div takes the full width */
+    box-sizing: border-box; /* Ensures padding doesn't add to the width */
+}

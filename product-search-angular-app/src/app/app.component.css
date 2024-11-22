@@ -1,0 +1,12 @@
+.result-wishlist{
+    height: 50px;
+    border: 0;
+    border-radius: 8px;
+    font-size: 20px;
+    background-color: #fff;
+    color: black;
+}
+.selectedState{
+    background-color: black;
+    color: #fff;
+}

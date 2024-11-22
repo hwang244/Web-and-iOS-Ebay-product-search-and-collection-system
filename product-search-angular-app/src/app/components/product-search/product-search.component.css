@@ -1,0 +1,31 @@
+.search-box{
+    max-width: 95%;
+    background-color: rgb(39, 41, 45);
+    margin-left: auto;
+    margin-right: auto;
+}
+.loggo-font{
+    color: #eee; 
+}
+
+.font{
+    color: #eee;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.align-centered{
+    display: flex; 
+    align-items: center; 
+    justify-content: start;
+}
+
+.button-submit{
+    justify-content: center;
+    align-items: center;
+}
+.button-clear{
+    justify-content: center;
+    align-items: center;
+}
+.invalid-input {
+    border-color: red !important;
+}

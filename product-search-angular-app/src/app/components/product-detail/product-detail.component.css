@@ -1,0 +1,111 @@
+.fb-box{
+    background-color: #1e196b;
+}
+
+.fb-button{
+    color: white;
+    font-size: 1.6em;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+    /* This extends the underline across the whole row */
+    padding-bottom: 0;
+}
+
+.nav-link.active {
+    background-color: black !important;
+    /* Bootstrap primary color for example */
+    color: white !important;
+}
+
+/* Remove default border color */
+.nav-tabs .nav-link {
+    color: black;
+    border: 1px solid transparent
+}
+
+.nav-tabs .nav-link:hover {
+    border-color: #dee2e6;
+    /* Same color as your underline for consistency */
+}
+
+/* Clear padding or margins as needed to align properly */
+.navbar {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* This is to ensure the tabs are on the right */
+.nav-tabs.ms-auto {
+    margin-left: auto;
+}
+
+.back-list {
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247, 248, 250);
+    border: 0;
+    color: black;
+    /* font-size: 2rem; */
+}
+
+.back-list:hover {
+    background-color: rgb(225, 226, 232);
+    color: black;
+}
+
+.title-button {
+    background: none;
+    color: rgb(31, 80, 56);
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.circular-chart {
+    display: block;
+    width: 9%;
+    /* Use viewport width for responsiveness */
+    height: auto;
+    /* Maintain aspect ratio */
+    /* max-width: 100px; */
+    /* Set a max-width to prevent it from becoming too large */
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+}
+
+.circle {
+    fill: none;
+    stroke: #4caf50;
+    /* Example stroke color for the progress bar */
+    stroke-width: 2.5;
+    stroke-linecap: round;
+}
+
+.circular-chart .circle {
+    stroke-width: 2.5; /* Adjust the width to make the ring thinner */
+}
+  
+.circular-chart .circle-bg {
+    stroke-width: 2.5; /* Adjust the background ring to the same width for consistency */
+}
+
+.percentage {
+    fill: white;
+    font-family: sans-serif;
+    font-size: 0.7em;
+    /* Use em units for scalable text */
+    text-anchor: middle;
+    alignment-baseline: middle;
+}
+
+.progress-circle {
+    position: relative;
+    /* For centering text and other elements */
+    display: flex;
+}

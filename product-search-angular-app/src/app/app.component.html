@@ -1,0 +1,7 @@
+<app-product-search></app-product-search>
+<div class="row" style="margin-top: 10px;">
+  <button class="col-md-1 offset-md-5 col-sm-1 result-wishlist" [class.selectedState]="activeView === 'Result'" (click)="activeView = 'Result'">Result</button>
+  <button class="col-md-1 col-sm-1 result-wishlist" [class.selectedState]="activeView === 'WishList'" (click)="activeView = 'WishList'">Wish List</button>  
+</div>
+<app-results-table *ngIf="activeView === 'Result'"></app-results-table>
+<app-wishlist-table *ngIf="activeView === 'WishList'"></app-wishlist-table>

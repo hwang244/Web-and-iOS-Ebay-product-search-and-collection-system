@@ -1,0 +1,131 @@
+<header>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</header>
+<div class="container-fluid mt-5 search-box mx-auto">
+    <br>
+    
+    
+    <form [formGroup] = "form" (ngSubmit) = "onSubmit()">
+      <div class="row mb-3 form-group font fs-2">
+        <div class="col-md-3 offset-md-3 mt-3 loggo-font">Product Search</div>
+      </div>
+      <div class="row mb-3 form-group font">
+        <label for="keyword" class="col-md-2 offset-md-3 col-sm-12 font col-form-label">Keyword<p style="color: red; font-size: small; display: inline-block;">*</p></label>
+        <div class="col-md-4 col-sm-12">
+            <input type="text" class="form-control" [class.invalid-input]="form.controls['keyword'].invalid && form.controls['keyword'].touched" formControlName="keyword" id="keyword" placeholder="Enter Product Name(eg. iphone15)">
+            <div *ngIf="form.controls['keyword'].errors && form.controls['keyword'].touched" class="text-danger">
+              <!-- Required error message -->
+              <div class="row">
+                <div class="col-sm-12 font-weight-light small">
+                  Please enter a keyword name
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="row mb-3 form-group font">
+        <label for="category" class="col-md-2 offset-md-3 col-sm-12 font col-form-label">Category</label>
+        <div class="col-md-2 col-sm-12">
+            <select class="form-control" formControlName="category" id="category">
+                <option>All Categories</option>
+                <!-- Add other categories as needed -->
+                <option value="Art">Art</option>
+                <option value="Baby">Baby</option>
+                <option value="Books">Books</option>
+                <option value="Clothing, Shoes & Accessories">Clothing, Shoes & Accessories</option>
+                <option value="Computers/Tablets & Networking">Computers/Tablets & Networking</option>
+                <option value="Health & Beauty">Health & Beauty</option>
+                <option value="Music">Music</option>
+                <option value="Videos Games & Consoles">Videos Games & Consoles</option>
+              </select>
+        </div>
+      </div>
+      <div class="row mb-3 form-group font">
+        <label class="col-md-2 offset-md-3 col-sm-12 font col-form-label">Condition</label>
+        <div class="col-md-3 col-sm-12 form-check-inline align-centered">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="condition" id="new" value="New" (change)="onConditionChange($event)">
+                <label class="form-check-label" for="new">&nbsp; New &nbsp;</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="condition" id="used" value="Used" (change)="onConditionChange($event)">
+                <label class="form-check-label" for="used">&nbsp; Used &nbsp;</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="condition" id="specified" value="Specified" (change)="onConditionChange($event)">
+                <label class="form-check-label" for="specified">&nbsp; Specified &nbsp;</label>
+            </div>
+        </div>
+              <!-- Add more conditions as needed -->
+      </div>
+      
+      <div class="row mb-3 form-group font">
+        <label class="col-md-2 offset-md-3 col-sm-12 font col-form-label">Shipping Options</label>
+        <div class="col-md-3 col-sm-12 form-check-inline align-centered" >
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="shipping" id="local-pickup" value="Local Pickup" (change)="onShippingChange($event)">
+                <label class="form-check-label" for="local-pickup">&nbsp; Local Pickup &nbsp;</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="shipping" id="free-shipping" value="Free Shipping" (change)="onShippingChange($event)">
+                <label class="form-check-label" for="free-shipping">&nbsp; Free Shipping &nbsp;</label>
+            </div>
+        </div>
+      </div>
+      <div class="row mb-3 form-group font">
+        <label for="distance" class="col-md-2 offset-md-3 col-sm-12 font col-form-label">Distance(Miles)</label>
+        <div class="col-md-2 col-sm-12">
+            <input type="number" class="form-control" formControlName="distance" id="distance" placeholder="10" min="0" step="1">
+        </div>
+      </div>
+      <div class="row mb-3 form-group font">
+        <label class="col-md-2 offset-md-3 col-sm-12 font col-form-label">from<p style="color: red; font-size: small; display: inline-block;">*</p></label>
+        <div class="col-md-2">
+            <div class=" col-sm-12 form-check">
+                <input class="form-check-input" type="radio" formControlName="locationChoice" name="locationChoice" id="current-loc" value="current" (change)="onLocationChange($event)" checked>
+                <label class="form-check-label" for="current-loc">'Current Location'</label>
+            </div>
+            <div class="col-sm-12 form-check">
+                <input class="form-check-input" type="radio" formControlName="locationChoice" name="locationChoice" id="other" value="other">
+                <label class="form-check-label" for="other">Other. Please specify zip code:</label>
+            </div>
+        </div>
+      </div>
+      <div class="row mb-3 form-group">
+        <div class="col-md-4 offset-md-5 col-sm-12">
+          
+            <input type="text" class="form-control " [class.invalid-input]="form.controls['zipcode'].invalid && form.controls['zipcode'].touched" formControlName="zipcode" id="zipcode" [matAutocomplete]="auto" placeholder="">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredZipcodes$ | async" [value]="option">
+                  {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+            <div *ngIf="form.controls['zipcode'].errors && form.controls['zipcode'].touched" class="text-danger">
+              <!-- Required error message -->
+              <div class="row">
+                <div class="col-sm-12 font-weight-light small">
+                  Please enter a zip code
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <!-- Repeat similar blocks for other form fields... -->
+      <div class="row mb-3 form-group">
+        <div class="col-12 d-flex">
+            <div class="col-md-2 offset-md-3 col-sm-1 button-submit">
+                <button style="background-color: rgb(166, 167, 171); border: 0px;" type="submit" class="btn d-flex align-items-center" [disabled]="!form.controls['zipcode'].valid || !form.controls['keyword'].valid"><span class=" material-symbols-outlined">search</span> Search</button>
+            </div>
+            <div class="col-md-2 offset-md-0 offset-sm-6 col-sm-1 button-clear">
+                <button style="background-color: #eee;" type="reset" class="btn d-flex align-items-center" (click)="clearForm()"><span class=" material-symbols-outlined">clear_all</span> Clear</button>
+            </div>
+        </div>
+
+      </div>
+      
+      <br>
+
+    </form>
+  </div>
+  

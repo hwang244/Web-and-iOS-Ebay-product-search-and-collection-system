@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<div class="modal" tabindex="-1" [class.show]="showModal" [style.display]="showModal ? 'block' : 'none'" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title custom-title mt-2">Product Images</h5>
+                <button type="button" class="close custom-close" aria-label="Close" (click)="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <i class="bi bi-chevron-left arrow" (click)="navigate(false)">
+                    <span class="material-symbols-outlined">
+                        navigate_before
+                    </span>
+                </i>
+                <img [src]="images[currentImageIndex]" class="img-fluid" alt="Product Image">
+                <i class="bi bi-chevron-right arrow" (click)="navigate(true)">
+                    <span class="material-symbols-outlined">
+                        navigate_next
+                    </span>
+                </i>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-close-modal" (click)="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

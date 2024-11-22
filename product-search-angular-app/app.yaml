@@ -1,0 +1,26 @@
+runtime: nodejs16
+env: standard
+instance_class: F1
+
+handlers:
+  # Serve all the static files that are part of the Angular distribution
+  - url: /(.*\.(gif|png|jpg|css|js|ico|json|svg|woff|woff2|ttf|eot))$
+    static_files: dist/product-search-angular-app/\1
+    upload: dist/product-search-angular-app/.*\.(gif|png|jpg|css|js|ico|json|svg|woff|woff2|ttf|eot)$
+    secure: always
+    redirect_http_response_code: 301
+
+  # Serve index.html for all other requests to enable Angular's routing
+  - url: /.*
+    static_files: dist/product-search-angular-app/index.html
+    upload: dist/product-search-angular-app/index.html
+    secure: always
+    redirect_http_response_code: 301
+
+automatic_scaling:
+  min_idle_instances: automatic
+  max_idle_instances: automatic
+
+# Environment variables can be added if needed
+env_variables:
+  NODE_ENV: 'production'

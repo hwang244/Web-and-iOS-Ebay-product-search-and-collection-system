@@ -1,0 +1,44 @@
+.custom-title {
+    font-size: 1rem;
+    /* Adjust font size relative to root element */
+}
+
+.custom-close {
+    font-size: 2rem;
+    /* Adjust the font size for a bigger cross */
+    border: none;
+    padding: 0;
+    line-height: 1;
+    background-color: white;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    /* Adjust arrow size relative to root element */
+    cursor: pointer;
+    /* Add color or other styles as needed */
+}
+
+.bi-chevron-left {
+    left: 1rem;
+    /* Adjust left arrow position with rem */
+}
+
+.bi-chevron-right {
+    right: 1rem;
+    /* Adjust right arrow position with rem */
+}
+
+.modal-body {
+    position: relative;
+}
+
+.btn-close-modal {
+    font-size: 1rem;
+    /* Adjust close button font size relative to root element */
+    float: right;
+    /* Align the close button to the right */
+}
